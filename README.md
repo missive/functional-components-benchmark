@@ -1,3 +1,5 @@
+![Benchmark gif](http://i.imgur.com/ufZeDFd.gif)
+
 # Run
 
 * Build once: `npm run webpack`
