@@ -21,7 +21,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                loader: 'react-hot',
+                loader: 'react-hot-loader',
                 test: dir_js,
             },
             {
@@ -30,6 +30,7 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react'],
                 },
+                exclude: /node_modules/
             }
         ]
     },
@@ -39,7 +40,15 @@ module.exports = {
             { from: dir_html } // to: output.path
         ]),
         // Avoid publishing files when compilation fails
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+          }
+        }),
+
+        new webpack.optimize.UglifyJsPlugin()
     ],
     stats: {
         // Nice colored output
